@@ -1,0 +1,14 @@
+If a web dashboard to be made for controlling and monitoring of the devices from 
+where we are getting the data, for this
+3.1 Which platforms/ programming language should be used for the web dashboard
+3.2 Prepare a brief plan for hosting the web dashboard on cloud server. (Include the 
+costing, reliability and additional features of the server)
+
+
+3.1 For the web dashboard, you could use a platform such as Node-RED or a programming language such as Python or JavaScript. Node-RED is a visual programming tool that allows you to easily create a dashboard with drag-and-drop UI elements, while Python and JavaScript are more traditional programming languages that allow for more customization and flexibility.
+
+3.2 To host the web dashboard on a cloud server, you have several options to consider. One option is to use a cloud platform such as Amazon Web Services (AWS) or Google Cloud Platform (GCP). These platforms offer various pricing models and additional features such as load balancing and auto-scaling to ensure reliability. Another option is to use a hosting provider such as DigitalOcean or Linode, which offer more basic cloud hosting services at a lower cost.
+
+In terms of costing, the cost of hosting the web dashboard on a cloud server will depend on the specific requirements of your dashboard and the resources needed to run it. Some factors to consider include the number of users accessing the dashboard, the amount of data being processed and stored, and the desired level of reliability and availability.
+
+To plan for hosting the web dashboard on a cloud server, you should first determine your specific requirements and budget, and then research the different cloud platform and hosting options available to determine which one best meets your needs. Some additional features to consider include data backup and recovery, security measures, and support for scaling and resource management.
