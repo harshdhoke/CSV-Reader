@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSV Reader</title>
+  <link rel="icon" href="cloud-upload-icon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="header">
+    <h1>Weclcome to CSV Reader !!!</h1>
+    <h2>Make your files visible...</h2>
+    <p>Here, you can easily upload and view your CSV files. Simply click the "Click or Drag and Drop your File here!!!"
+      button or drag and drop your file onto the page. The file will be processed and displayed in a table for you to
+      view. You can also download the file by right-clicking on the table and selecting "Save As...". Thank you for
+      using our CSV Reader.</p>
+  </div>
+  <div class="container" draggable="true">
+    <input type="file" accept=".csv" id="file-input" class="file-input" style="display: none;">
+    <label for="file-input" class="btn">
+      <span class="file-icon"></span>
+      <span class="file-label">Click or Drag and Drop your File here!!!</span>
+    </label>
+  </div>
+  <div class="footer">
+    <p>"Effortlessly view and analyze your CSV data with CSV Reader"</p>
+  </div>
+  <table id="dataTable">
+    <!-- Column headings and data will be added here -->
+  </table>
+  <script>
+    const fileInput = document.querySelector('#file-input');
+    const container = document.querySelector('.container');
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      handleFile(file);
+    });
+
+    container.addEventListener('dragenter', (event) => {
+      event.preventDefault();
+      container.classList.add('drag-over');
+    });
+
+    container.addEventListener('dragleave', (event) => {
+      event.preventDefault();
+      container.classList.remove('drag-over');
+    });
+
+    container.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    });
+
+    container.addEventListener('drop', (event) => {
+      event.preventDefault();
+      container.classList.remove('drag-over');
+      const file = event.dataTransfer.files[0];
+      fileInput.files = event.dataTransfer.files;
+      handleFile(file);
+    });
+
+    function handleFile(file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const contents = event.target.result;
+        const lines = contents.split('\n');
+        const headings = lines[0].split(',');
+        const data = [];
+        for (let i = 1; i < lines.length; i++) {
+          const row = lines[i].split(',');
+          if (row.length !== headings.length) {
+            // Skip rows with invalid data
+            continue;
+          }
+          data.push({});
+          for (let j = 0; j < headings.length; j++) {
+            data[i - 1][headings[j]] = row[j];
+          }
+        }
+        // Populate the table with the data
+        const table = document.querySelector('#dataTable');
+        table.innerHTML = ''; // Clear any previous data
+        const tr = document.createElement('tr');
+        for (const heading of headings) {
+          const th = document.createElement('th');
+          th.textContent = heading;
+          tr.appendChild(th);
+        }
+        table.appendChild(tr);
+        for (const row of data) {
+          const tr = document.createElement('tr');
+          for (const heading of headings) {
+            const td = document.createElement('td');
+            td.textContent = row[heading];
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        }
+      };
+      reader.readAsText(file);
+    }
+    const mqtt = require('mqtt');
+
+    // Connect to MQTT broker
+    const client = mqtt.connect('mqtt://localhost:1883');
+
+    // Subscribe to the MQTT topic for data points
+    client.subscribe('dataPoints');
+
+    // Function to handle incoming data points
+    client.on('message', (topic, message) => {
+      if (topic === 'dataPoints') {
+        // Parse message into a CSV file
+        const lines = message.toString().split('\n');
+        const headings = lines[0].split(',');
+        const data = [];
+        for (let i = 1; i < lines.length; i++) {
+          const row = lines[i].split(',');
+          if (row.length !== headings.length) {
+            // Skip rows with invalid data
+            continue;
+          }
+          data.push({});
+          for (let j = 0; j < headings.length; j++) {
+            data[i - 1][headings[j]] = row[j];
+          }
+        }
+
+        // Generate API endpoint for retrieving data points
+        app.get('/dataPoints', (req, res) => {
+          res.json(data);
+        });
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>

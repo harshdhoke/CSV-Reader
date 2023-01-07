@@ -1,0 +1,103 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-image: url('container.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+  }
+  .file-input {
+    display: none;
+  }
+  .file-input:hover{
+    display: none;
+  }
+
+  body {
+    background-image: url('main-page.png');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 400px;
+    border: none;
+    border-radius: 4px;
+    background-color: #337ab7;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #286090;
+  }
+  
+  .file-icon {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-color: #ccc;
+    background-image: url('cloud-upload-icon.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .file-label {
+    display: inline-block;
+    height: 50px;
+    width: 350px;
+    line-height: 50px;
+    padding-left: 20px;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  #dataTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  #dataTable th,
+  #dataTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+  
+  #dataTable th {
+    background-color: #337ab7;
+    color: #fff;
+  }
+  
+  #dataTable tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+
+.header,
+.footer {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.header h1,
+.header h2,
+.header p,
+.footer p {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #99ffff;
+}
+
+  
